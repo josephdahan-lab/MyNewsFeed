@@ -1,9 +1,14 @@
 const express = require('express');
-const fetch = require('node-fetch');
 const RSSParser = require('rss-parser');
 const path = require('path');
 
 const app = express();
+
+// ESM-compatible dynamic fetch for node-fetch v3
+const fetch = async (...args) => {
+  const { default: nodeFetch } = await import('node-fetch');
+  return nodeFetch(...args);
+};
 const parser = new RSSParser();
 
 app.use(express.json());
