@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>News Harvester</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="hero">
+      <h1>World News Explorer</h1>
+      <p>Discover global feeds, add sources, and read popular headlines with images.</p>
+    </div>
+    <div class="tabs">
+      <button id="tab-news" class="active">News</button>
+      <button id="tab-sources">Manage Sources</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="news-view" class="panel">
+      <div class="toolbar">
+        <input id="search-input" type="search" placeholder="Search news..." />
+        <button id="refresh-btn">Refresh</button>
+        <button id="retry-failed" type="button">Retry failed sources</button>
+      </div>
+      <div id="news-error-box" class="news-error-box hidden"></div>
+      <ul id="news-list"></ul>
+    </section>
+
+    <section id="sources-view" class="panel hidden">
+      <form id="source-form" class="source-form">
+        <h2>Add / Update Source</h2>
+        <input id="source-name" required placeholder="Source name" />
+        <input id="source-url" required placeholder="URL to RSS / website" />
+        <select id="source-type">
+          <option value="rss">RSS feed</option>
+          <option value="html">Website URL</option>
+        </select>
+        <div class="detect-controls">
+          <button id="detect-rss" type="button" class="secondary">Auto detect RSS</button>
+          <span id="detect-status" class="muted">Detected RSS sources will replace URL/type.</span>
+        </div>
+        <button type="submit">Save Source</button>
+        <button id="cancel-edit" type="button" class="secondary hidden">Cancel</button>
+      </form>
+
+      <h2>Sources</h2>
+      <div class="source-controls">
+        <input id="source-filter" type="search" placeholder="Search sources..." />
+        <select id="source-country">
+          <option value="All">All countries</option>
+          <option value="France">France</option>
+          <option value="USA">USA</option>
+          <option value="UK">UK</option>
+          <option value="International">International</option>
+        </select>
+        <select id="source-sort">
+          <option value="name">Sort by name</option>
+          <option value="country">Sort by country</option>
+        </select>
+      </div>
+      <div class="source-actions">
+        <button id="export-sources" type="button">Export sources (JSON)</button>
+        <button id="import-sources-trigger" type="button">Import sources</button>
+        <input id="import-sources-file" type="file" accept="application/json" class="hidden" />
+      </div>
+      <ul id="source-list"></ul>
+      <p id="no-sources" class="muted hidden">No sources yet. Add one above.</p>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
